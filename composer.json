@@ -1,0 +1,16 @@
+{
+    "name": "marcus/zenitech",
+    "description": "Teste técnico para Zenitech, Gerenciamento de Usuários.",
+    "autoload": {
+        "psr-4": {
+            "Marcus\\Zenitech\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marcus Vieites",
+            "email": "vieitesmarcus@gmail.com"
+        }
+    ],
+    "require": {}
+}
