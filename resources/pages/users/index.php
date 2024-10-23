@@ -2,7 +2,15 @@
 require_once __DIR__ . '/../../layout/header.php';
 ?>
 <div class="container">
-
+    <div class="m-3 p-0  d-flex justify-content-end">
+        <a href="/users/create" class="btn btn-outline-secondary">Adicionar usuários</a>
+    </div>
+    <?php if (isset($_SESSION['mensagem'])): ?>
+        <div class="alert alert-<?= $_SESSION['tipo_mensagem'] ?> alert-dismissible fade show" role="alert">
+            <?= $_SESSION['mensagem'] ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <table class="table">
         <thead>
             <tr>

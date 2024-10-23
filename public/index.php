@@ -1,7 +1,9 @@
 <?php
 //Arquivo de entrada
 declare(strict_types=1);
-ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);            // Habilita a exibição de erros
+ini_set('display_startup_errors', 1);    // Exibe erros ocorridos durante o carregamento inicial
+error_reporting(E_ALL);
 require_once __DIR__ . "/../vendor/autoload.php";
 header('Content-Type:text/html', true, 200);
 session_start();
@@ -15,9 +17,9 @@ if (array_key_exists("$method|$path", $routes)) {
     $controller = new $routes["$method|$path"][0]();
     $methodName = $routes["$method|$path"][1];
     $controller->$methodName();
-    
+
     ob_end_flush();
 } else {
-    
+
     require __DIR__ . "/../resources/pages/error404.php";
 }
