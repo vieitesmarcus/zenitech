@@ -12,5 +12,7 @@
             "email": "vieitesmarcus@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.3"
+    }
 }

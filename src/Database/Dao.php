@@ -7,8 +7,16 @@ use Marcus\Zenitech\Providers\Enviroment;
 use PDO;
 use PDOException;
 
+/**
+ * Classe de acesso ao banco de dados
+ */
 abstract class Dao
 {
+    /**
+     * atributo responsável por fazer a conexão
+     *
+     * @var PDO
+     */
     protected PDO $conexao;
 
     public function __construct()
@@ -16,6 +24,7 @@ abstract class Dao
         try {
             Enviroment::addEnv();
 
+            //Cria a conexão
             $this->conexao = new PDO(
                 "mysql:host=" . getenv('MYSQL_ROOT_HOST') . ";dbname=" . getenv('DB_DATABASE') . ';port=3306',
                 getenv('DB_USERNAME'),
@@ -28,10 +37,11 @@ abstract class Dao
                 ]
             );
             $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
+
+            //retorna o PDO
             return $this->conexao;
         } catch (PDOException $error) {
-            
+
             echo "ERRO => " . $error->getMessage();
             http_response_code(404);
             return false;

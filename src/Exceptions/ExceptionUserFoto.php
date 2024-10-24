@@ -6,4 +6,4 @@ namespace Marcus\Zenitech\Exceptions;
 
 use Exception;
 
-class ExceptionUserName extends Exception {}
+class ExceptionUserFoto extends Exception {}

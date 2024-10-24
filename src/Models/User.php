@@ -28,9 +28,11 @@ class User
     }
 
     /**
-     * Set the value of nome
+     * Define o valor do nome após validações e sanitização.
      *
-     * @return  self
+     * @param string $nome O nome a ser definido.
+     * @throws ExceptionUserName Se o nome for inválido ou não atender aos requisitos.
+     * @return self A instância atual do objeto.
      */
     public function setNome($nome)
     {
@@ -62,9 +64,11 @@ class User
     }
 
     /**
-     * Set the value of email
+     * Define o valor do email após validações e sanitização.
      *
-     * @return  self
+     * @param string $email O email a ser definido.
+     * @throws ExceptionUserEmail Se o email for inválido ou não atender aos requisitos.
+     * @return self A instância atual do objeto.
      */
     public function setEmail($email)
     {
@@ -89,19 +93,28 @@ class User
      */
     public function getDataNascimento()
     {
-        return date_format($this->data_nascimento, 'Y/m/d');
+        return date_format($this->data_nascimento, 'Y-m-d');
     }
 
     /**
-     * Set the value of data_nascimento
+     * Define o valor da data de nascimento após validações e sanitização.
      *
-     * @return  self
+     * @param string $data_nascimento A data de nascimento a ser definida.
+     * @throws ExceptionUserDataNascimento Se a data de nascimento for inválida ou não atender aos requisitos.
+     * @return self A instância atual do objeto.
      */
     public function setDataNascimento($data_nascimento)
     {
         $newDataNascimento = filter_var($data_nascimento, FILTER_DEFAULT);
         if (is_null($newDataNascimento) || strlen($newDataNascimento) == 0) {
             throw new ExceptionUserDataNascimento("O campo data de nascimento é obrigatório", 400);
+        }
+
+        if (
+            date_diff(new DateTime($newDataNascimento), new DateTime('now'))->y < 18
+        ) {
+
+            throw new ExceptionUserDataNascimento("O Usuário deve ter no mínimo 18 anos", 400);
         }
         // Caso ocorra uma exceção o proprio datetime mostra.
         $newDataNascimento = new DateTime($newDataNascimento);
@@ -131,7 +144,7 @@ class User
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -141,7 +154,7 @@ class User
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;

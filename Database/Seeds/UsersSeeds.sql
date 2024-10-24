@@ -1,22 +1,4 @@
--- Caso use DBeaver
--- escrever as querys com o nome da database no começo como abaixo
--- aqui foi aonde fui criando e testando as querys primeiro antes de ir para o código
-
-DROP TABLE IF EXISTS zenitechdb.users;
-
-
-CREATE TABLE zenitechdb.users (
-    id INT AUTO_INCREMENT,
-    nome varchar(255) NOT NULL,
-    email varchar(255) NOT NULL UNIQUE,
-    data_nascimento DATE NOT NULL,
-    foto varchar(255) NULL,
-    criado_em timestamp DEFAULT CURRENT_TIMESTAMP,
-    atualizado_em timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY  (id)
-);
-
-INSERT INTO zenitechdb.users (nome, email, data_nascimento, foto) VALUES
+INSERT INTO users (nome, email, data_nascimento, foto) VALUES
 ('João Silva', 'joao@example.com', '1990-05-15', 'foto_joao.jpg'),
 ('Maria Oliveira', 'maria@example.com', '1985-10-25', 'foto_maria.jpg'),
 ('Carlos Santos', 'carlos@example.com', '2000-01-30', 'foto_carlos.jpg'),
@@ -49,13 +31,3 @@ INSERT INTO zenitechdb.users (nome, email, data_nascimento, foto) VALUES
 ('Eduardo Pinto', 'eduardo.pinto@example.com', '1991-01-08', 'foto_eduardo.jpg'),
 ('Aline Oliveira', 'aline.oliveira@example.com', '1994-07-22', 'foto_aline.jpg'),
 ('Bruno Martins', 'bruno.martins@example.com', '1990-11-30', 'foto_bruno.jpg');
-
-UPDATE zenitechdb.users
-SET nome = 'João Pedro Silva'
-WHERE email = 'joao@example.com';
-
-UPDATE zenitechdb.users
-SET nome = 'Maria Clara Oliveira'
-WHERE email = 'maria@example.com';
-
-SELECT * FROM zenitechdb.users WHERE nome LIKE "%.com%" OR email LIKE "%.com%" ORDER BY id DESC LIMIT 5 OFFSET 0;

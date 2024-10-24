@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Not Found</title>
+  <title><?= $title?? "Zenitech - Marcus Vieites" ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -27,3 +27,11 @@
       </div>
     </div>
   </nav>
+  <div class="container">
+    <?php if (isset($_SESSION['mensagem'])): ?>
+      <div class="alert alert-<?= $_SESSION['tipo_mensagem'] ?> alert-dismissible fade show m-3" role="alert">
+        <?= $_SESSION['mensagem'] ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif; ?>
+  </div>
